@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TinyDrone.AppHost/TinyDrone.AppHost.csproj" />
+  <Project Path="TinyDrone.WebApi/TinyDrone.WebApi.csproj" />
+</Solution>

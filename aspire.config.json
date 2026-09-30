@@ -1,0 +1,5 @@
+{
+    "appHost": {
+        "path": "TinyDrone.AppHost/TinyDrone.AppHost.csproj"
+    }
+}
