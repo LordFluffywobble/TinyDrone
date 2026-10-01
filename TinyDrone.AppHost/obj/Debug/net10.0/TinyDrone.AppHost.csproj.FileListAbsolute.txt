@@ -110,3 +110,4 @@
 /home/bo/Dokumenter/Programmering/C#/Advanced/TinyDrone/TinyDrone.AppHost/obj/Debug/net10.0/TinyDrone.AppHost.pdb
 /home/bo/Dokumenter/Programmering/C#/Advanced/TinyDrone/TinyDrone.AppHost/obj/Debug/net10.0/TinyDrone.AppHost.genruntimeconfig.cache
 /home/bo/Dokumenter/Programmering/C#/Advanced/TinyDrone/TinyDrone.AppHost/obj/Debug/net10.0/ref/TinyDrone.AppHost.dll
+/home/bo/Dokumenter/Programmering/C#/Advanced/TinyDrone/TinyDrone.AppHost/obj/Debug/net10.0/TinyDrone.AppHost.sourcelink.json

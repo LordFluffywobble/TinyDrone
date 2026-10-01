@@ -135,3 +135,4 @@
 /home/bo/Dokumenter/Programmering/C#/Advanced/TinyDrone/TinyDrone.WebApi/bin/Debug/net10.0/Microsoft.IdentityModel.Logging.dll
 /home/bo/Dokumenter/Programmering/C#/Advanced/TinyDrone/TinyDrone.WebApi/bin/Debug/net10.0/Microsoft.IdentityModel.Tokens.dll
 /home/bo/Dokumenter/Programmering/C#/Advanced/TinyDrone/TinyDrone.WebApi/bin/Debug/net10.0/System.IdentityModel.Tokens.Jwt.dll
+/home/bo/Dokumenter/Programmering/C#/Advanced/TinyDrone/TinyDrone.WebApi/obj/Debug/net10.0/TinyDrone.WebApi.sourcelink.json
