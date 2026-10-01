@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TinyDrone.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f344a068fe8c1f19ceaeda1ca8e66e0d4a6701b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+075aa607d1dd51402a4b7e71e568c09f7529d526")]
 [assembly: System.Reflection.AssemblyProductAttribute("TinyDrone.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TinyDrone.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
