@@ -40,6 +40,15 @@ if (app.Environment.IsDevelopment())
         options.WithTitle("TinyDrone API")
                .WithTheme(ScalarTheme.DeepSpace)
                .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+
+        options.AddPreferredSecuritySchemes("OAuth2");
+
+        options.AddAuthorizationCodeFlow("OAuth2", flow =>{
+            flow.ClientId = "ditt-klient-her";
+            flow.AuthorizationUrl = "https://din-identity-provider.com";
+            flow.TokenUrl = "https://din-identity-provider.com";
+            flow.Pkce = Pkce.Sha256;
+        });
     });
 }
 
