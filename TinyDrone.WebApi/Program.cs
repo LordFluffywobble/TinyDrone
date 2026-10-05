@@ -4,9 +4,19 @@ using Microsoft.VisualBasic;
 using Scalar.AspNetCore;
 using TinyDrone.TinyDrone.WebApi.Models;
 using TinyDrone.TinyDrone.WebApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>{
+    options.Authority = builder.Configuration["Authentications: Authority"];
+    options.Audience  = builder.Configuration["Authentication: Audience"];
+    options.RequireHttpsMetadata = builder.Environment.IsDevelopment();
+});
+
+builder.Services.AddAuthorization();
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -32,18 +42,25 @@ if (app.Environment.IsDevelopment())
                .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
     });
 }
+
+    app.UseAuthentication();
+    app.UseAuthorization();
+
     app.MapPost("/api/drones/createdrone", async (DroneDTO dto, DroneService droneService) =>
-        Results.Created($"/api/drones/createdrone", await droneService.CreateDroneAsync(dto)));
+        Results.Created($"/api/drones/createdrone", await droneService.CreateDroneAsync(dto)))
+        .RequireAuthorization();
 
     app.MapGet("/api/drones/list", async (DroneService droneService) =>
-        Results.Ok(await droneService.DroneListAsync()));
+        Results.Ok(await droneService.DroneListAsync()))
+        .RequireAuthorization();
 
     app.MapGet("/api/drone/{id}", async (int id, DroneService droneService) =>{
         var drone  = await droneService.GetDroneByIdAsync(id);
         if (drone == null) return TypedResults.NotFound($"No drone with ID {id} exists");
         
         return Results.Ok(drone);
-    });
+    }).RequireAuthorization();
+    
     app.MapDelete("/api/deletedrone/{id}", async (int id, DroneService droneService) =>{
         var deletedDrone  = await droneService.DeleteDroneByIdAsync(id); 
         if (deletedDrone == null){
@@ -53,7 +70,9 @@ if (app.Environment.IsDevelopment())
             Message = "Drone deleted successfully",
             Drone   = deletedDrone
         });
-    });
+    })
+    .RequireAuthorization();
+    
     app.MapPut("/api/updatedrone/{id}", async (int id, DroneDTO dto, DroneService dService) =>{
         var updatedDrone  = await dService.UpdateDroneWithIdAsync(id, dto); 
         if (updatedDrone == null){
@@ -63,7 +82,9 @@ if (app.Environment.IsDevelopment())
             Message = $"Drone {id} updated successfully",
             Drone   = updatedDrone    
         });
-    });
+    })
+    .RequireAuthorization();
+    
     app.MapGet("/api/findshortestpath/{id1}/{id2}", async (int id1, int id2, DroneService dService) => {
         var sPath = await dService.ShortestDronePathAsync(id1, id2);
             if (sPath == null) {
@@ -73,7 +94,8 @@ if (app.Environment.IsDevelopment())
             Message = $"The shortest path between {sPath.Value.Name1} and {sPath.Value.Name2} is:",
             Path = sPath.Value.Distance
         });
-    });
+    })
+    .RequireAuthorization();
 
 
 app.Run();
