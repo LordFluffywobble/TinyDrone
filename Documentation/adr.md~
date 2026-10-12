@@ -1,0 +1,47 @@
+# Architecture Analysis
+
+
+### 1. No user specific options
+
+### 2. No limit of how many drones a user can create in the logic
+
+### 3. Password saved in plaintext in a json file
+
+---
+
+###                      Problem 1: User Options
+#### This is a problem because we can not add, remove or give persmissions to a user.
+**Priority: Medium.** 
+
+We currently have a password on the database and only one user.
+
+
+###                      Problem 2: Drone logic
+#### No limit on drone creation could be used to overload the system and make it sluggish for others.
+**Priority: Low.** 
+
+Low importance of database as a target. 
+
+*We need to make something to either track the number of drone operations 
+or track how many drone operations are being done in any given time. Potentially per user.*
+
+
+
+###                      Problem 3: Password woes
+#### Hvaing a password in plaintext is remarkably unsafe and insecure.
+**Priority: High**
+
+It is saved in plaintext in a json file using <UserSecretId>. 
+Can be retrieved using the command dotnet: user-secrets list.
+UserSecrets is only meant for local development and is not used at all in production systems.
+
+*To change this we need to make an option to create users who have different permissions.*
+
+---
+
+## 3. Potential solutions to my Password woes
+**Alternative A**
+
+
+**Alternative B**
+
